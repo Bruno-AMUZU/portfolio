@@ -27,7 +27,7 @@ Peu d'hébergements mutualisés proposent PostgreSQL : à vérifier avant de cho
 ### A. Hébergement sans Docker (mutualisé ou VPS avec Apache)
 
 ```sh
-git clone https://github.com/Bruno-AMUZU/<depot>.git portfolio && cd portfolio
+git clone https://github.com/Bruno-AMUZU/portfolio.git portfolio && cd portfolio
 cp .env.production.example .env        # puis remplir chaque valeur
 composer install --no-dev --optimize-autoloader --classmap-authoritative
 php bin/migrate.php
@@ -47,7 +47,7 @@ publie aucun port : Caddy le joint sous le nom `portfolio`. Les fichiers envoyé
 En root, sur le serveur (le réseau `proxy` et Caddy existent déjà) :
 
 ```sh
-git clone -b v2 https://github.com/Bruno-AMUZU/Bruno-AMUZU.GitHub.io.git /opt/portfolio && cd /opt/portfolio
+git clone -b v2 https://github.com/Bruno-AMUZU/portfolio.git /opt/portfolio && cd /opt/portfolio
 cp .env.production.example .env && chmod 600 .env
 openssl rand -hex 24                   # → DB_PASSWORD
 nano .env                              # remplir chaque valeur
@@ -124,6 +124,5 @@ OPcache repart à neuf, rien à vider.
 
 ## 8. Après la mise en ligne
 
-- Renommer le dépôt et rediriger l'ancien site GitHub Pages vers brunoamuzu.fr (issue #51).
 - Déclarer le sitemap (`https://brunoamuzu.fr/sitemap.xml`) dans Google Search Console.
 - Supprimer les données de démonstration : en production, la base démarre vide (pas de `bin/seed.php`).
