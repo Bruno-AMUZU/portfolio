@@ -1,0 +1,29 @@
+# Toute URL qui ne correspond pas à un vrai fichier (CSS, image…) est confiée à index.php.
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.php [QSA,L]
+
+# Fichiers statiques : le navigateur respecte le type annoncé (pas de « devinette » du type).
+<IfModule mod_headers.c>
+    Header setifempty X-Content-Type-Options "nosniff"
+</IfModule>
+
+# Pas de liste des fichiers d'un dossier sans index.
+Options -Indexes
+
+# Cache navigateur des fichiers statiques. CSS et JS sont appelés avec ?v=<date de modification>
+# (fonction asset()) : on peut les garder un an, une nouvelle version change l'adresse.
+<IfModule mod_headers.c>
+    <FilesMatch "\.(css|js|woff2)$">
+        Header set Cache-Control "public, max-age=31536000, immutable"
+    </FilesMatch>
+    <FilesMatch "\.(svg|png|jpg|webp|ico)$">
+        Header set Cache-Control "public, max-age=604800"
+    </FilesMatch>
+</IfModule>
+
+# Compression des fichiers texte (le module est actif sur la plupart des hébergements).
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/css text/plain application/javascript application/json application/xml image/svg+xml
+</IfModule>

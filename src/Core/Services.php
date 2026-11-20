@@ -1,0 +1,39 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Core;
+
+use App\Model\Repository\FileRepository;
+use PDO;
+
+/**
+ * Déclare les services de l'application, au même endroit pour le site, les scripts et les tests.
+ */
+final class Services
+{
+    public static function container(?Request $request = null): Container
+    {
+        $container = new Container();
+
+        // Une seule connexion par requête, ouverte seulement si un repository en a besoin.
+        $container->set(PDO::class, fn () => Database::connect());
+
+        $request ??= new Request('GET', '/');
+        $container->set(Request::class, fn () => $request);
+        $container->set(Session::class, fn () => new Session(secureCookie: $request->isSecure()));
+        $container->set(SecurityHeaders::class, fn () => new SecurityHeaders(production: Env::get('APP_ENV') === 'prod'));
+        $container->set(Translator::class, fn () => new Translator(ROOT_PATH . '/lang'));
+        $container->set(Uploader::class, fn (Container $c) => new Uploader(
+            $c->get(FileRepository::class),
+            ROOT_PATH . '/storage/uploads',
+        ));
+        $container->set(Logger::class, fn () => new Logger(ROOT_PATH . '/storage/logs'));
+        $container->set(ErrorHandler::class, fn (Container $c) => new ErrorHandler(
+            $c->get(Logger::class),
+            debug: Env::get('APP_ENV') === 'dev',
+        ));
+
+        return $container;
+    }
+}

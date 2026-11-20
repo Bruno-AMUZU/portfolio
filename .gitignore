@@ -1,0 +1,24 @@
+# Outillage Claude Code (local uniquement)
+.claude/
+
+# Maquette : fichiers générés et rapports de vérification
+design/maquette/generated/
+design/maquette/rapports/
+
+# Fichiers envoyés depuis le dashboard et journaux (seul le dossier est suivi)
+storage/uploads/*
+storage/logs/*
+!storage/**/.gitkeep
+
+# Dépendances Composer
+vendor/
+
+# Configuration locale (identifiants) : seul .env.example est suivi
+.env
+
+# Cache de PHPUnit
+.phpunit.cache/
+.phpunit.result.cache
+
+# Sauvegardes (bin/backup.sh) : à copier hors du serveur, jamais dans git
+backups/
