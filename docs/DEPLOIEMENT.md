@@ -47,7 +47,7 @@ publie aucun port : Caddy le joint sous le nom `portfolio`. Les fichiers envoyé
 En root, sur le serveur (le réseau `proxy` et Caddy existent déjà) :
 
 ```sh
-git clone -b v2 https://github.com/Bruno-AMUZU/portfolio.git /opt/portfolio && cd /opt/portfolio
+git clone https://github.com/Bruno-AMUZU/portfolio.git /opt/portfolio && cd /opt/portfolio
 cp .env.production.example .env && chmod 600 .env
 openssl rand -hex 24                   # → DB_PASSWORD
 nano .env                              # remplir chaque valeur
@@ -99,7 +99,7 @@ Avec Docker (VPS) :
 cd /opt/portfolio && sh bin/deploy-docker.sh   # code, image, sauvegarde, migrations, redémarrage, vérification
 ```
 
-Le script déploie la branche en place (`v2` jusqu'à la fusion dans `main`). Le conteneur est recréé :
+Le script déploie la branche en place (`main`). Le conteneur est recréé :
 OPcache repart à neuf, rien à vider.
 
 ## 6. Sauvegardes (issue #48)

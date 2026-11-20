@@ -2,7 +2,7 @@
 # Met à jour le site sur le VPS (Docker, compose.prod.yaml), en root, depuis la racine du projet :
 #   sh bin/deploy-docker.sh
 #
-# 1. récupère la dernière version de la branche en place (v2 jusqu'à la fusion dans main) ;
+# 1. récupère la dernière version de la branche en place (main) ;
 # 2. reconstruit l'image : un échec laisse la version en service intacte ;
 # 3. sauvegarde la base et les fichiers avant toute migration ;
 # 4. applique les migrations, puis remplace le conteneur (OPcache repart à neuf) ;

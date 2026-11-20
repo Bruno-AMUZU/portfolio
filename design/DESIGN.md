@@ -202,6 +202,7 @@ Le back-office gère des **types de contenu définis** : projets, certifications
 | 2026-11-09 | **Déploiement** : branche `v2` sur le VPS (`compose.prod.yaml`, `bin/deploy-docker.sh`) ; `main` garde la v1 sur GitHub Pages jusqu'à la fusion (#51). Base `pgvector/pgvector:pg17` dès maintenant pour l'assistant IA (V2.2). Adresse réelle des visiteurs par `mod_remoteip` | [V] |
 | 2026-11-20 | **Dépôt** renommé `portfolio` (#51). Pas de dépôt de redirection `Bruno-AMUZU.github.io` : l'ancien site GitHub Pages est simplement retiré. Remplace la décision du 2026-11-03 | [V] |
 | 2026-11-20 | **Assistant IA** (#57) mis de côté : pas de modèle payant tant que l'usage réel est inconnu (offre gratuite de l'API Gemini interdite pour des visiteurs dans l'EEE). Il devient un projet à part (RAG avec DeepSeek), présenté ensuite dans le Lab. La spec ChatBubble / ChatPanel reste dans `components.md` pour mémoire | [V] |
+| 2026-11-20 | **Fusion** de `v2` dans `main` par pull request ; le VPS déploie désormais `main`, la branche `v2` est supprimée | [V] |
 | 2026-11-02 | Les contenus `[À FOURNIR]` seront traités dans une discussion dédiée ; la maquette les affiche tels quels d'ici là | [V] |
 | 2026-10-30 | Téléphone affiché | [R] |
 | 2026-10-30 | Instagram | [R] |
